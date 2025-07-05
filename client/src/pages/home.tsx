@@ -429,13 +429,7 @@ export default function Home() {
                     </p>
                   </div>
                   
-                  <div className="border border-brand-grey-dark rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-white mb-3">Research Partnerships</h4>
-                    <p className="text-brand-grey-light mb-2">research@theaiindian.com</p>
-                    <p className="text-brand-grey-light text-sm">
-                      Collaborate with us on cutting-edge AI research and development projects.
-                    </p>
-                  </div>
+                  
                   
                   <div className="border border-brand-grey-dark rounded-lg p-6">
                     <h4 className="text-lg font-semibold text-white mb-3">Business Development</h4>
