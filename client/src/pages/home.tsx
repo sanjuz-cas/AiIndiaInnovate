@@ -3,72 +3,58 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 // Enhanced animation variants with smoother easing
+// Gentler animations for non-hero sections
 const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
+  initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   transition: { 
-    duration: 1.2, 
-    ease: [0.25, 0.1, 0.25, 1.0],
-    type: "spring",
-    damping: 25,
-    stiffness: 100
+    duration: 0.6, 
+    ease: [0.25, 0.1, 0.25, 1.0]
   }
 };
 
 const fadeInScale = {
-  initial: { opacity: 0, scale: 0.9 },
+  initial: { opacity: 0, scale: 0.95 },
   animate: { opacity: 1, scale: 1 },
   transition: { 
-    duration: 1.0, 
-    ease: [0.25, 0.1, 0.25, 1.0],
-    type: "spring",
-    damping: 20,
-    stiffness: 80
+    duration: 0.6, 
+    ease: [0.25, 0.1, 0.25, 1.0]
   }
 };
 
 const slideInLeft = {
-  initial: { opacity: 0, x: -60 },
+  initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0 },
   transition: { 
-    duration: 1.0, 
-    ease: [0.25, 0.1, 0.25, 1.0],
-    type: "spring",
-    damping: 25,
-    stiffness: 100
+    duration: 0.6, 
+    ease: [0.25, 0.1, 0.25, 1.0]
   }
 };
 
 const slideInRight = {
-  initial: { opacity: 0, x: 60 },
+  initial: { opacity: 0, x: 20 },
   animate: { opacity: 1, x: 0 },
   transition: { 
-    duration: 1.0, 
-    ease: [0.25, 0.1, 0.25, 1.0],
-    type: "spring",
-    damping: 25,
-    stiffness: 100
+    duration: 0.6, 
+    ease: [0.25, 0.1, 0.25, 1.0]
   }
 };
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1
+      staggerChildren: 0.1,
+      delayChildren: 0.05
     }
   }
 };
 
 const staggerItem = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 15 },
   animate: { opacity: 1, y: 0 },
   transition: { 
-    duration: 0.8, 
-    ease: [0.25, 0.1, 0.25, 1.0],
-    type: "spring",
-    damping: 25,
-    stiffness: 120
+    duration: 0.5, 
+    ease: [0.25, 0.1, 0.25, 1.0]
   }
 };
 
@@ -90,7 +76,7 @@ function AnimatedSection({ children, className = "", variant = "fadeInUp" }: {
   variant?: "fadeInUp" | "fadeInScale" | "slideInLeft" | "slideInRight";
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
 
   const variants = {
     fadeInUp,
@@ -119,8 +105,8 @@ function ParallaxSection({ children, className = "" }: { children: React.ReactNo
     offset: ["start end", "end start"]
   });
   
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.8, 1, 1, 0.8]);
 
   return (
     <motion.div
@@ -135,7 +121,7 @@ function ParallaxSection({ children, className = "" }: { children: React.ReactNo
 
 function StaggeredContainer({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
 
   return (
     <motion.div
@@ -160,7 +146,7 @@ function StaggeredItem({ children, className = "" }: { children: React.ReactNode
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -50]);
   
   useEffect(() => {
     // Enhanced smooth scroll behavior
