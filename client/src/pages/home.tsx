@@ -226,7 +226,7 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
             <AnimatedSection variant="slideInLeft">
-              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-white">Our Foundation</h3>
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-[#cfcfcf]">Our Foundation</h3>
               <p className="text-brand-grey-light leading-relaxed mb-6">
                 Founded with the vision to democratize AI technology for Indian markets, we combine deep technical 
                 expertise with cultural understanding to build products that truly serve our diverse population.
