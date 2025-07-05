@@ -406,42 +406,127 @@ export default function Home() {
 
       {/* Contact Section - Simple Responsive */}
       <section id="contact" className="section-spacing px-4 border-t border-brand-grey-dark">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 gradient-text">Get In Touch</h2>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-8 gradient-text">Contact Us</h2>
             <p className="text-lg text-brand-grey-light max-w-3xl mx-auto leading-relaxed">
-              Join us in building the future of AI for India. We're always looking for passionate researchers, 
-              engineers, and collaborators who share our vision.
+              Connect with us to explore collaboration opportunities, discuss research partnerships, 
+              or learn more about our AI solutions for Indian markets.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <h3 className="text-xl font-semibold text-white mb-4">Research Collaboration</h3>
-              <p className="text-brand-grey-light text-sm leading-relaxed">
-                Partner with us on cutting-edge AI research focused on Indian languages and cultural contexts.
-              </p>
+          <div className="grid lg:grid-cols-2 gap-16 mb-16">
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">Get In Touch</h3>
+                <div className="space-y-6">
+                  <div className="border border-brand-grey-dark rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-white mb-3">General Inquiries</h4>
+                    <p className="text-brand-grey-light mb-2">hello@theaiindian.com</p>
+                    <p className="text-brand-grey-light text-sm">
+                      For general questions about our company, products, and services.
+                    </p>
+                  </div>
+                  
+                  <div className="border border-brand-grey-dark rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-white mb-3">Research Partnerships</h4>
+                    <p className="text-brand-grey-light mb-2">research@theaiindian.com</p>
+                    <p className="text-brand-grey-light text-sm">
+                      Collaborate with us on cutting-edge AI research and development projects.
+                    </p>
+                  </div>
+                  
+                  <div className="border border-brand-grey-dark rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-white mb-3">Business Development</h4>
+                    <p className="text-brand-grey-light mb-2">business@theaiindian.com</p>
+                    <p className="text-brand-grey-light text-sm">
+                      Explore integration opportunities and enterprise solutions.
+                    </p>
+                  </div>
+                  
+                  <div className="border border-brand-grey-dark rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-white mb-3">Careers</h4>
+                    <p className="text-brand-grey-light mb-2">careers@theaiindian.com</p>
+                    <p className="text-brand-grey-light text-sm">
+                      Join our team of passionate AI researchers and engineers.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="text-center">
-              <h3 className="text-xl font-semibold text-white mb-4">Product Integration</h3>
-              <p className="text-brand-grey-light text-sm leading-relaxed">
-                Integrate our AI solutions into your products to better serve Indian markets and communities.
-              </p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-xl font-semibold text-white mb-4">Join Our Team</h3>
-              <p className="text-brand-grey-light text-sm leading-relaxed">
-                Be part of our mission to democratize AI technology for India's diverse population.
-              </p>
+            
+            {/* Office Information & Social */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">Our Location</h3>
+                <div className="border border-brand-grey-dark rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-white mb-4">Headquarters</h4>
+                  <div className="text-brand-grey-light space-y-2">
+                    <p>The AI Indian Technologies Pvt. Ltd.</p>
+                    <p>Bangalore, Karnataka</p>
+                    <p>India</p>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-brand-grey-dark">
+                    <p className="text-brand-grey-light text-sm">
+                      We're building the future of AI from the heart of India's tech capital, 
+                      bringing together diverse talent and perspectives to create globally relevant solutions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">Connect With Us</h3>
+                <div className="space-y-4">
+                  <div className="border border-brand-grey-dark rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-white mb-3">Research Updates</h4>
+                    <p className="text-brand-grey-light text-sm mb-3">
+                      Stay updated with our latest research publications and project releases.
+                    </p>
+                    <p className="text-brand-grey-light">publications@theaiindian.com</p>
+                  </div>
+                  
+                  <div className="border border-brand-grey-dark rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-white mb-3">Community</h4>
+                    <p className="text-brand-grey-light text-sm mb-3">
+                      Join our developer community and contribute to open-source projects.
+                    </p>
+                    <p className="text-brand-grey-light">community@theaiindian.com</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
-          <div>
-            <div className="border-t border-brand-grey-dark pt-8">
-              <p className="text-brand-grey-light text-sm">
-                © 2024 The AI Indian. Building the future of artificial intelligence for India and the world.
-              </p>
+          {/* Call to Action */}
+          <div className="text-center border-t border-brand-grey-dark pt-12">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4">Ready to Collaborate?</h3>
+            <p className="text-brand-grey-light mb-6 max-w-2xl mx-auto">
+              Whether you're a researcher, developer, or organization interested in AI for Indian contexts, 
+              we'd love to hear from you. Let's build the future of AI together.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="mailto:hello@theaiindian.com" 
+                className="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-brand-grey-light transition-colors"
+              >
+                Start a Conversation
+              </a>
+              <a 
+                href="mailto:research@theaiindian.com" 
+                className="border border-brand-grey-dark text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand-grey-dark transition-colors"
+              >
+                Research Partnership
+              </a>
             </div>
+          </div>
+          
+          {/* Footer */}
+          <div className="border-t border-brand-grey-dark pt-8 mt-12 text-center">
+            <p className="text-brand-grey-light text-sm">
+              © 2024 The AI Indian Technologies Pvt. Ltd. Building the future of artificial intelligence for India and the world.
+            </p>
           </div>
         </div>
       </section>
