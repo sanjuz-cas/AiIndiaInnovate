@@ -481,13 +481,7 @@ export default function Home() {
                     <p className="text-brand-grey-light">publications@theaiindian.com</p>
                   </div>
                   
-                  <div className="border border-brand-grey-dark rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-white mb-3">Community</h4>
-                    <p className="text-brand-grey-light text-sm mb-3">
-                      Join our developer community and contribute to open-source projects.
-                    </p>
-                    <p className="text-brand-grey-light">community@theaiindian.com</p>
-                  </div>
+                  
                 </div>
               </div>
             </div>
