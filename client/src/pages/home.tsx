@@ -213,7 +213,6 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </motion.section>
-
       {/* About Section */}
       <section id="about" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
@@ -239,7 +238,7 @@ export default function Home() {
             </AnimatedSection>
             
             <AnimatedSection variant="slideInRight">
-              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-white">Our Approach</h3>
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-[#d3d3d3]">Our Approach</h3>
               <p className="text-brand-grey-light leading-relaxed mb-6">
                 We believe in building AI that is not just technically advanced but also culturally aware and 
                 contextually relevant. Our research focuses on multilingual capabilities, regional commerce 
@@ -253,7 +252,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Mission Section */}
       <section id="mission" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
@@ -325,7 +323,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Research Section */}
       <section id="research" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
@@ -395,7 +392,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Projects Section */}
       <section id="projects" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
@@ -504,7 +500,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Open Source Section */}
       <section id="opensource" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
@@ -583,7 +578,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Technology Section */}
       <section id="technology" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
@@ -684,7 +678,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Contact Section */}
       <section id="contact" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
