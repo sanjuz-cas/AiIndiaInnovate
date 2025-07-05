@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 12.5%);
+  --muted-foreground: hsl(0, 0%, 50.2%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(0, 0%, 0%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(0, 0%, 12.5%);
+  --input: hsl(0, 0%, 12.5%);
+  --primary: hsl(0, 0%, 100%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 12.5%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(0, 0%, 12.5%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(0, 0%, 100%);
+  --radius: 0.5rem;
+  
+  /* Custom color variables for the design */
+  --brand-black: hsl(0, 0%, 0%);
+  --brand-grey-light: hsl(0, 0%, 50.2%);
+  --brand-grey-medium: hsl(0, 0%, 25.1%);
+  --brand-grey-dark: hsl(0, 0%, 12.5%);
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 12.5%);
+  --muted-foreground: hsl(0, 0%, 50.2%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(0, 0%, 0%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(0, 0%, 12.5%);
+  --input: hsl(0, 0%, 12.5%);
+  --primary: hsl(0, 0%, 100%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 12.5%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(0, 0%, 12.5%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(0, 0%, 83.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased bg-black text-white;
+    font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+    background-color: var(--brand-black);
+    color: var(--foreground);
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(0, 0%, 50.2%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-spacing {
+    @apply py-8 md:py-16 lg:py-24;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+
+  .animate-on-scroll.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger-animation {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+
+  .stagger-animation.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .text-brand-grey-light {
+    color: var(--brand-grey-light);
+  }
+
+  .text-brand-grey-medium {
+    color: var(--brand-grey-medium);
+  }
+
+  .text-brand-grey-dark {
+    color: var(--brand-grey-dark);
+  }
+
+  .bg-brand-grey-dark {
+    background-color: var(--brand-grey-dark);
+  }
+
+  .border-brand-grey-dark {
+    border-color: var(--brand-grey-dark);
+  }
+}
