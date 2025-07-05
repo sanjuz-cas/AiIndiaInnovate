@@ -1,39 +1,131 @@
 import { useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
-// Animation variants
+// Enhanced animation variants with smoother easing
 const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, ease: "easeOut" }
+  transition: { 
+    duration: 1.2, 
+    ease: [0.25, 0.1, 0.25, 1.0],
+    type: "spring",
+    damping: 25,
+    stiffness: 100
+  }
+};
+
+const fadeInScale = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { 
+    duration: 1.0, 
+    ease: [0.25, 0.1, 0.25, 1.0],
+    type: "spring",
+    damping: 20,
+    stiffness: 80
+  }
+};
+
+const slideInLeft = {
+  initial: { opacity: 0, x: -60 },
+  animate: { opacity: 1, x: 0 },
+  transition: { 
+    duration: 1.0, 
+    ease: [0.25, 0.1, 0.25, 1.0],
+    type: "spring",
+    damping: 25,
+    stiffness: 100
+  }
+};
+
+const slideInRight = {
+  initial: { opacity: 0, x: 60 },
+  animate: { opacity: 1, x: 0 },
+  transition: { 
+    duration: 1.0, 
+    ease: [0.25, 0.1, 0.25, 1.0],
+    type: "spring",
+    damping: 25,
+    stiffness: 100
+  }
 };
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.15,
+      delayChildren: 0.1
     }
   }
 };
 
 const staggerItem = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" }
+  transition: { 
+    duration: 0.8, 
+    ease: [0.25, 0.1, 0.25, 1.0],
+    type: "spring",
+    damping: 25,
+    stiffness: 120
+  }
 };
 
-// Animated section component
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+const floatingAnimation = {
+  animate: {
+    y: [-10, 10, -10],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
+// Enhanced animated section components
+function AnimatedSection({ children, className = "", variant = "fadeInUp" }: { 
+  children: React.ReactNode; 
+  className?: string;
+  variant?: "fadeInUp" | "fadeInScale" | "slideInLeft" | "slideInRight";
+}) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  const variants = {
+    fadeInUp,
+    fadeInScale,
+    slideInLeft,
+    slideInRight
+  };
 
   return (
     <motion.div
       ref={ref}
       initial="initial"
       animate={isInView ? "animate" : "initial"}
-      variants={fadeInUp}
+      variants={variants[variant]}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function ParallaxSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ y, opacity }}
       className={className}
     >
       {children}
@@ -43,7 +135,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 function StaggeredContainer({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <motion.div
@@ -67,25 +159,64 @@ function StaggeredItem({ children, className = "" }: { children: React.ReactNode
 }
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  
   useEffect(() => {
-    // Smooth scroll behavior
+    // Enhanced smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Add custom CSS for smoother scrolling on all browsers
+    const style = document.createElement('style');
+    style.textContent = `
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center section-spacing px-4">
+    <motion.div 
+      className="min-h-screen bg-black text-white overflow-x-hidden smooth-scroll"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Hero Section with Parallax */}
+      <motion.section 
+        id="home" 
+        className="min-h-screen flex items-center justify-center section-spacing px-4 relative"
+        style={{ y: heroY }}
+      >
         <div className="max-w-6xl mx-auto text-center">
-          <AnimatedSection>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text leading-tight">
+          <AnimatedSection variant="fadeInScale">
+            <motion.h1 
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text leading-tight"
+              variants={floatingAnimation}
+              animate="animate"
+            >
               The AI Indian
-            </h1>
-            <p className="text-sm md:text-base text-brand-grey-light mb-8 tracking-wide uppercase">
+            </motion.h1>
+            <motion.p 
+              className="text-sm md:text-base text-brand-grey-light mb-8 tracking-wide uppercase"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+            >
               Live and Virtual
-            </p>
+            </motion.p>
           </AnimatedSection>
-          <AnimatedSection>
+          <AnimatedSection variant="fadeInUp">
             <h2 className="text-xl md:text-3xl lg:text-4xl font-light mb-8 text-brand-grey-light max-w-4xl mx-auto leading-relaxed">
               Artificial Intelligence Research & Products
             </h2>
@@ -95,12 +226,12 @@ export default function Home() {
             </p>
           </AnimatedSection>
         </div>
-      </section>
+      </motion.section>
 
       {/* About Section */}
       <section id="about" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
-          <AnimatedSection className="mb-16">
+          <AnimatedSection className="mb-16" variant="fadeInScale">
             <h2 className="text-3xl md:text-5xl font-bold mb-8 gradient-text">About Us</h2>
             <p className="text-lg md:text-xl text-brand-grey-light leading-relaxed max-w-4xl">
               We are a forward-thinking artificial intelligence research and product company dedicated to creating 
@@ -109,7 +240,7 @@ export default function Home() {
           </AnimatedSection>
           
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-            <AnimatedSection>
+            <AnimatedSection variant="slideInLeft">
               <h3 className="text-xl md:text-2xl font-semibold mb-6 text-white">Our Foundation</h3>
               <p className="text-brand-grey-light leading-relaxed mb-6">
                 Founded with the vision to democratize AI technology for Indian markets, we combine deep technical 
@@ -121,7 +252,7 @@ export default function Home() {
               </p>
             </AnimatedSection>
             
-            <AnimatedSection>
+            <AnimatedSection variant="slideInRight">
               <h3 className="text-xl md:text-2xl font-semibold mb-6 text-white">Our Approach</h3>
               <p className="text-brand-grey-light leading-relaxed mb-6">
                 We believe in building AI that is not just technically advanced but also culturally aware and 
@@ -140,7 +271,7 @@ export default function Home() {
       {/* Mission Section */}
       <section id="mission" className="section-spacing px-4 border-t border-brand-grey-dark">
         <div className="max-w-6xl mx-auto">
-          <AnimatedSection className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16" variant="fadeInScale">
             <h2 className="text-3xl md:text-5xl font-bold mb-8 gradient-text">Mission & Vision</h2>
             <p className="text-lg text-brand-grey-light max-w-3xl mx-auto leading-relaxed">
               Driving the future of AI technology with a deep understanding of Indian contexts and global ambitions.
@@ -654,6 +785,6 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }
