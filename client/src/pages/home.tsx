@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 // Hero section animations only
@@ -37,6 +37,65 @@ const floatingAnimation = {
   }
 };
 
+// Stars Background Component
+const StarsBackground = () => {
+  const stars = useMemo(() => {
+    const starArray = [];
+    // Generate random stars
+    for (let i = 0; i < 150; i++) {
+      const size = Math.random() > 0.7 ? 'star-large' : Math.random() > 0.4 ? 'star-medium' : 'star-small';
+      starArray.push({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size,
+        delay: Math.random() * 3
+      });
+    }
+    return starArray;
+  }, []);
+
+  const shootingStars = useMemo(() => {
+    const shootingArray = [];
+    for (let i = 0; i < 3; i++) {
+      shootingArray.push({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 50,
+        delay: Math.random() * 4
+      });
+    }
+    return shootingArray;
+  }, []);
+
+  return (
+    <div className="stars-background">
+      {stars.map((star) => (
+        <div
+          key={star.id}
+          className={`star ${star.size}`}
+          style={{
+            left: `${star.left}%`,
+            top: `${star.top}%`,
+            animationDelay: `${star.delay}s`
+          }}
+        />
+      ))}
+      {shootingStars.map((star) => (
+        <div
+          key={`shooting-${star.id}`}
+          className="shooting-star"
+          style={{
+            left: `${star.left}%`,
+            top: `${star.top}%`,
+            animationDelay: `${star.delay}s`
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 export default function Home() {
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -50]);
@@ -69,13 +128,14 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Hero Section with Parallax */}
+      {/* Hero Section with Parallax and Stars */}
       <motion.section 
         id="home" 
-        className="min-h-screen flex items-center justify-center section-spacing px-4 relative"
+        className="min-h-screen flex items-center justify-center section-spacing px-4 relative overflow-hidden"
         style={{ y: heroY }}
       >
-        <div className="max-w-6xl mx-auto text-center">
+        <StarsBackground />
+        <div className="max-w-6xl mx-auto text-center relative z-10">
           <motion.div
             initial="initial"
             animate="animate"
